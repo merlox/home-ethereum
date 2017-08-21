@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import './../css/index.css'
 
 class App extends React.Component {
    constructor(props){
@@ -7,14 +8,14 @@ class App extends React.Component {
    }
 
    render(){
-      return ()
+      return (<div>Hi</div>)
    }
 }
 
 function init(){
    const div = document.createElement('div')
    div.id = 'root'
-   document.appendChild(div)
+   document.body.appendChild(div)
 
    ReactDOM.render(
       <App />,
