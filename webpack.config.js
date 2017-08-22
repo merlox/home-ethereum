@@ -9,23 +9,27 @@ module.exports = {
    },
    module: {
       loaders: [{
-         test: /\.css$/,
-         use: ['style-loader', 'css-loader'],
-         include: /src/
-      }, {
-         loader: 'babel-loader',
          test: /\.jsx?$/,
+         loader: 'babel-loader',
          exclude: /node_modules/,
          query: {
             presets: ['es2015', 'react', 'stage-2']
          }
       }, {
-         loader: 'json-loader',
-         test: /\.json$/
+         test: /\.json$/,
+         exclude: /node_modules/,
+         loader: 'json-loader'
+      }, {
+         test: /\.styl$/,
+         exclude: /node_modules/,
+         use: ['style-loader', 'css-loader', 'stylus-loader']
       }]
    },
-   plugins: [new htmlPlugin({
-      title: "Dapp for descentralized home renting",
-      hash: true
-   })]
+   plugins: [
+      new htmlPlugin({
+         title: "Dapp for descentralized home renting",
+         template: './src/html/index.ejs',
+         hash: true
+      })
+   ]
 }
