@@ -31,7 +31,11 @@ contract HomeToken {
    event Approval(address indexed owner, address indexed spender, uint256 value);
 
    // Constructor
-   function HomeToken(uint initialSupply) {
+   function HomeToken(string _name, string _symbol, uint initialSupply, uint totalSupply) {
+      require(bytes(_name).length > 0);
+      require(bytes(_symbol).length > 0);
+      require(initialSupply > 0);
+      require(totalSupply >= initialSupply);
 
       // The creator of the token gets the initial supply
       balances[msg.sender] = initialSupply;
