@@ -1,5 +1,4 @@
 import React from 'react'
-// import './../css/index.css'
 
 class Header extends React.Component {
    constructor(props){

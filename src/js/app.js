@@ -1,40 +1,37 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
 import Header from './header'
 import Listings from './listings'
-import {Listing} from './listings'
 
 class App extends React.Component {
    constructor(props){
       super(props)
-
-      this.state = {
-         listingNodes: [],
-      }
-   }
-
-   componentDidMount(){
-      this.generateListings.bind(this)()
-   }
-
-   generateListings(){
-      let nodes = []
-
-      for(let i = 1; i < 6; i++){
-         let src = `${i}.jpg`
-         nodes.push(<Listing key={src} source={src}/>)
-      }
-
-      this.setState({
-         listingNodes: nodes
-      })
    }
 
    render(){
       return (
+         <BrowserRouter>
+            <Base>
+               <Route to="/" render={() => (
+                  <Listings />
+               )}/>
+            </Base>
+         </BrowserRouter>
+      )
+   }
+}
+
+class Base extends React.Component {
+   constructor(props) {
+      super(props)
+   }
+
+   render() {
+      return (
          <div>
-            <Header {...this.state} />
-            <Listings {...this.state} />
+            <Header />
+            {this.props.children}
          </div>
       )
    }

@@ -1,0 +1,55 @@
+body
+   font-family: 'lato'
+   box-sizing: border-box
+
+.listing
+   max-width: 100%
+   height: auto
+   padding: 20px
+   margin: 10px 0
+
+   .listing-images-container
+      position: relative
+
+      img
+         width: 100%
+         display: block
+
+      .listing-arrow
+         height: 100%
+         width: 70px
+         background-size: 30px
+         background-position: center
+         background-repeat: no-repeat
+         position: absolute
+         top: 50%
+         transform: translateY(-50%)
+
+      .listing-arrow-back
+         background-image: url(/img/arrow-back.png)
+         left: 0
+
+      .listing-arrow-next
+         background-image: url(/img/arrow-next.png)
+         right: 0
+
+      .animate-image
+         animation: opacityAnimate 0.5s ease-in
+
+      .animate-image2
+         animation: opacityAnimate2 0.5s ease-in
+
+@keyframes opacityAnimate
+   0%
+      opacity: 0.3
+   100%
+      opacity: 1
+
+@keyframes opacityAnimate2
+   0%
+      opacity: 0.2
+   100%
+      opacity: 1
+
+@media (max-width: 500px)
+   // Get responsive

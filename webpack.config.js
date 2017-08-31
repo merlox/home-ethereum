@@ -22,6 +22,7 @@ module.exports = {
       }, {
          test: /\.styl$/,
          exclude: /node_modules/,
+         include: /src/,
          use: ['style-loader', 'css-loader', 'stylus-loader']
       }]
    },
