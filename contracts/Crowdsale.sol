@@ -1,6 +1,6 @@
 pragma solidity ^0.4.15;
 
-import 'zeppelin-solidity/contracts/token/MintableToken.sol'
+import 'zeppelin-solidity/contracts/token/MintableToken.sol';
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 
 /// @title Crowdsale contract to carry out an ICO with the HomeToken
@@ -44,10 +44,6 @@ contract Crowdsale is MintableToken {
    /// @param _endTime When the crowdsale ends
    /// @param _rate How much tokens you get per Wei
    /// @param _wallet The wallet that stores the Wei raised
-   /// @param tokenName The name of the token generated
-   /// @param tokenSymbol The symbol of the token to create
-   /// @param initialSupply The amount of tokens that the owner will get
-   /// @param totalSupply The total amount of tokens to create
    function Crowdsale(
       uint256 _startTime,
       uint256 _endTime,
@@ -87,8 +83,8 @@ contract Crowdsale is MintableToken {
       uint256 weiAmount = msg.value;
 
       // Calculate the amount of tokens that will be generated for that amount of Wei
-      uint256 tokens = weiAmount.safeMultiply(rate);
-      weiRaised = weiRaised.safeSum(weiAmount);
+      uint256 tokens = weiAmount.mul(rate);
+      weiRaised = weiRaised.add(weiAmount);
 
       token.mint(beneficiary, tokens);
       TokenPurchase(msg.sender, beneficiary, weiAmount, tokens);
