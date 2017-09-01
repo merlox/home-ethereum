@@ -1,7 +1,7 @@
 const Crowdsale = artifacts.require('./Crowdsale.sol')
 
 "1506729600", "1509408000", "5000", "0x08f96d0f5C9086d7f6b59F9310532BdDCcF536e2", "100000000000000000", "1000000000000000000000",
-"Home", "HOM", 
+"Home", "HOM",
 
 module.exports = function(deployer) {
    const startTime = 1506729600 // September 29 at 00:00:00 or 12:00 pm
@@ -23,12 +23,5 @@ module.exports = function(deployer) {
       wallet,
       minPurchase,
       maxPurchase,
-      tokenName,
-      tokenSymbol,
-      tokenDecimals,
-      initialSupply,
-      totalSupply, {
-         gas:
-      }
    )
 }

@@ -1,7 +1,7 @@
 pragma solidity ^0.4.15;
 
-import './MintableToken.sol'
-import './SafeMath.sol';
+import 'zeppelin-solidity/contracts/token/MintableToken.sol'
+import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 
 /// @title Crowdsale contract to carry out an ICO with the HomeToken
 /// Crowdsales have a start and end timestamps, where investors can make
@@ -9,11 +9,11 @@ import './SafeMath.sol';
 /// on a token per ETH rate. Funds collected are forwarded to a wallet
 /// as they arrive.
 /// @author Merunas Grincalaitis <merunasgrincalaitis@gmail.com>
-contract Crowdsale {
+contract Crowdsale is MintableToken {
    using SafeMath for uint256;
 
    // The token being sold
-   HomeToken public token;
+   MintableToken public token;
 
    // The block number of when the crowdsale starts
    uint256 public startTime;
@@ -62,7 +62,7 @@ contract Crowdsale {
       require(_rate > 0);
       require(_wallet != address(0));
 
-      token = ERC20(_tokenAddress);
+      token = MintableToken(_tokenAddress);
       startTime = _startTime;
       endTime = _endTime;
       rate = _rate;
