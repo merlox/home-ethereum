@@ -1,0 +1,220 @@
+{
+  "contract_name": "Crowdsale",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "rate",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "endTime",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "minPurchase",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "weiRaised",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "wallet",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "startTime",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "maxPurchase",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "beneficiary",
+          "type": "address"
+        }
+      ],
+      "name": "buyTokens",
+      "outputs": [],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "hasEnded",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "token",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_startTime",
+          "type": "uint256"
+        },
+        {
+          "name": "_endTime",
+          "type": "uint256"
+        },
+        {
+          "name": "_rate",
+          "type": "uint256"
+        },
+        {
+          "name": "_wallet",
+          "type": "address"
+        },
+        {
+          "name": "_minPurchase",
+          "type": "uint256"
+        },
+        {
+          "name": "_maxPurchase",
+          "type": "uint256"
+        },
+        {
+          "name": "tokenName",
+          "type": "string"
+        },
+        {
+          "name": "tokenSymbol",
+          "type": "string"
+        },
+        {
+          "name": "tokenDecimals",
+          "type": "uint8"
+        },
+        {
+          "name": "initialSupply",
+          "type": "uint256"
+        },
+        {
+          "name": "totalSupply",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "payable": true,
+      "type": "fallback"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "purchaser",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "TokenPurchase",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b6040516105003803806105008339810160405280805191906020018051919060200180519190602001805191906020018051919060200180519190602001805182019190602001805182019190602001805191906020018051919060200180519150505b428b101561008057600080fd5b8a8a101561008d57600080fd5b6000891161009a57600080fd5b600160a060020a03881615156100af57600080fd5b60018b905560028a9055600489905560038054600160a060020a031916600160a060020a038a16179055600687905560078690555b50505050505050505050505b610401806100ff6000396000f300606060405236156100a15763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416632c4e722e81146100ae5780633197cbb6146100d357806333b5b62e146100f85780634042b66f1461011d578063521eb2731461014257806378e9792514610171578063977b055b14610196578063ec8ac4d8146101bb578063ecb70fb7146101d1578063fc0c546a146101f8575b5b6100ab33610227565b5b005b34156100b957600080fd5b6100c16102d8565b60405190815260200160405180910390f35b34156100de57600080fd5b6100c16102de565b60405190815260200160405180910390f35b341561010357600080fd5b6100c16102e4565b60405190815260200160405180910390f35b341561012857600080fd5b6100c16102ea565b60405190815260200160405180910390f35b341561014d57600080fd5b6101556102f0565b604051600160a060020a03909116815260200160405180910390f35b341561017c57600080fd5b6100c16102ff565b60405190815260200160405180910390f35b34156101a157600080fd5b6100c1610305565b60405190815260200160405180910390f35b6100ab600160a060020a0360043516610227565b005b34156101dc57600080fd5b6101e461030b565b604051901515815260200160405180910390f35b341561020357600080fd5b610155610314565b604051600160a060020a03909116815260200160405180910390f35b600080600160a060020a038316151561023f57600080fd5b610247610323565b151561025257600080fd5b60045434925061026990839063ffffffff61035516565b60055490915061027f908363ffffffff61038416565b600555600160a060020a038084169033167f623b3804fa71d67900d064613da8f94b9617215ee90799290593e1745087ad18848460405191825260208201526040908101905180910390a36102d261039e565b5b505050565b60045481565b60025481565b60065481565b60055481565b600354600160a060020a031681565b60015481565b60075481565b60025442115b90565b600054600160a060020a031681565b6000806000600154421015801561033c57506002544211155b9150506000341181801561034d5750805b92505b505090565b600082820282848281151561036657fe5b041480610371575083155b151561037957fe5b8091505b5092915050565b60008282018381101561037957fe5b8091505b5092915050565b600354600160a060020a03163480156108fc0290604051600060405180830381858888f1935050505015156103d257600080fd5b5b5600a165627a7a723058206d43839e31596cb9194367d95fc0e400814ad8a443c238280a87567f108c05e60029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1504289136929
+}

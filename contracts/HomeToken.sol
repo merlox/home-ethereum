@@ -1,10 +1,12 @@
 pragma solidity ^0.4.15;
 
 import './SafeMath.sol';
+import './Ownable.sol';
+import './ERC20.sol';
 
 /// @title The token for the Home Ethereum's acommodation platform
 /// @author Merunas Grincalaitis
-contract HomeToken {
+contract HomeToken is ERC20, Ownable {
    using SafeMath for uint256;
 
    // Name of the token
@@ -15,6 +17,12 @@ contract HomeToken {
 
    // The total amount of tokens
    uint256 public totalSupply;
+
+   // The amount of decimals for that token
+   uint8 public decimals;
+
+   // To indicate if the minting is finished or not
+   bool public mintingFinished = false;
 
    // The balance of each user
    mapping(address => uint) balances;
@@ -30,15 +38,33 @@ contract HomeToken {
    // Event to indicate approval from one person to another
    event Approval(address indexed owner, address indexed spender, uint256 value);
 
+   // To indicate the amount of tokens an address got
+   event Mint(address indexed to, uint256 amount);
+
+   // To indicate that the mint is finished
+   event MintFinished();
+
+   /// @notice Used to check if the mint is finished or not
+   modifier canMint() {
+      require(!mintingFinished);
+      _;
+   }
+
    // Constructor
-   function HomeToken(string _name, string _symbol, uint initialSupply, uint totalSupply) {
+   function HomeToken(string _name, string _symbol, uint8 _decimals, uint _initialSupply, uint _totalSupply) {
       require(bytes(_name).length > 0);
       require(bytes(_symbol).length > 0);
-      require(initialSupply > 0);
-      require(totalSupply >= initialSupply);
+      require(_decimals > 0);
+      require(_initialSupply > 0);
+      require(_totalSupply >= _initialSupply);
+
+      name = _name;
+      symbol = _symbol;
+      decimals = _decimals;
 
       // The creator of the token gets the initial supply
-      balances[msg.sender] = initialSupply;
+      balances[msg.sender] = _initialSupply;
+      totalSupply = _totalSupply;
    }
 
    /// @notice To transfer tokens to an address
@@ -80,7 +106,8 @@ contract HomeToken {
    /// on behalf of from msg.sender
    /// @param spender The address that will be able to use the `value` of tokens
    /// @param value The amount of tokens that the spender is able to spend.
-   function approve(address spender, uint256 value) {
+   /// @return bool If the transaction was successful or not.
+   function approve(address spender, uint256 value) returns(bool) {
 
       // To change the approved amount you first have to reduce the addresses`
       // allowance to zero by calling `approve(spender, 0)` if it is not
@@ -119,6 +146,27 @@ contract HomeToken {
       }
 
       Approval(msg.sender, spender, allowed[msg.sender][spender]);
+      return true;
+   }
+
+   /// @notice To generate tokens (mint) for an address with an amount of tokens
+   /// @param to The address that will get the tokens
+   /// @param amount The amount of tokens to generate
+   /// @return bool If the minting was successful or not
+   function mint(address to, uint256 amount) onlyOwner canMint returns(bool) {
+      totalSupply = totalSupply.safeSum(amount);
+      balances[to] = balances[to].safeSum(amount);
+
+      Mint(to, amount);
+      Transfer(0x0, to, amount);
+      return true;
+   }
+
+   /// @notice To stop the minting by the owner
+   /// @return bool If the stop was successful
+   function finishMinting() onlyOwner returns(bool) {
+      mintingFinished = true;
+      MintFinished();
       return true;
    }
 

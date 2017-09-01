@@ -1,7 +1,7 @@
 pragma solidity ^0.4.15;
 
-import './HomeToken.sol'
-import './SafeMath.sol'
+import './MintableToken.sol'
+import './SafeMath.sol';
 
 /// @title Crowdsale contract to carry out an ICO with the HomeToken
 /// Crowdsales have a start and end timestamps, where investors can make
@@ -55,17 +55,14 @@ contract Crowdsale {
       address _wallet,
       uint256 _minPurchase,
       uint256 _maxPurchase,
-      string tokenName,
-      string tokenSymbol,
-      uint256 initialSupply,
-      uint256 totalSupply
+      address _tokenAddress
    ) {
       require(_startTime >= now);
       require(_endTime >= _startTime);
       require(_rate > 0);
       require(_wallet != address(0));
 
-      token = new HomeToken(tokenName, tokenSymbol, initialSupply, totalSupply);
+      token = ERC20(_tokenAddress);
       startTime = _startTime;
       endTime = _endTime;
       rate = _rate;
