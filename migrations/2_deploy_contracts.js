@@ -23,12 +23,8 @@ module.exports = function(deployer, network) {
             initialSupply
          )
       }).then(tokenInstance => {
-
-         console.log('Token address -->')
-         console.log(tokenInstance.address)
-
-         // Deploy the crowdsale
-         return Crowdsale.new(
+         return deployer.deploy(
+            Crowdsale,
             startTime,
             endTime,
             rate,
@@ -37,9 +33,6 @@ module.exports = function(deployer, network) {
             maxPurchase,
             tokenInstance.address
          )
-      }).then(crowdsaleInstance => {
-         console.log('Crowdsale address -->')
-         console.log(crowdsaleInstance.address)
       })
    }
 }

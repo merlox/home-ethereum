@@ -1,13 +1,11 @@
 pragma solidity ^0.4.15;
 
-import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import 'zeppelin-solidity/contracts/token/MintableToken.sol';
 
 /// @title The token for the Home Ethereum's acommodation platform. The totalSupply
 /// of tokens gets incremented when tokens are bought
 /// @author Merunas Grincalaitis
 contract HomeToken is MintableToken {
-   using SafeMath for uint256;
 
    // Name of the token
    string public name;
