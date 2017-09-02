@@ -3,12 +3,12 @@ const Crowdsale = artifacts.require('./Crowdsale.sol')
 
 module.exports = function(deployer, network) {
    if(network != 'live'){
-      const startTime = 1506729600 // September 29 at 00:00:00 or 12:00 pm
+      const startTime = Math.floor((new Date().getTime() + 1000000) / 1000)
       const endTime = 1509408000 // October 30 at 00:00:00 or 12:00 pm
       const rate = 5000 // 1 ether = 5000 tokens (in wei)
       const wallet = web3.eth.accounts[0] // The first account that created the crowdsale
-      const minPurchase = 100000000000000000 // 0.1 ether
-      const maxPurchase = 1000000000000000000000 // 1000 ether
+      const minPurchase = web3.toWei(0.1, 'ether') // 0.1 ether
+      const maxPurchase = web3.toWei(1000, 'ether') // 1000 ether
       const tokenName = 'Home'
       const tokenSymbol = 'HOM'
       const tokenDecimals = 18 // One token is like a wei 0.000000000000000001 token = 0.00000000000000001 ether

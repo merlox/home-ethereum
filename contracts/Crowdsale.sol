@@ -67,11 +67,9 @@ contract Crowdsale is MintableToken {
       maxPurchase = _maxPurchase;
    }
 
-   // TODO check that this is working. It may be neccesary to do a
-   // `buyTokens.value(msg.value)(msg.sender)`
    /// @notice Fallback function to buy tokens
    function () payable {
-      buyTokens(msg.sender);
+      this.buyTokens.value(msg.value)(msg.sender);
    }
 
    /// @notice To buy tokens given an address
@@ -92,7 +90,7 @@ contract Crowdsale is MintableToken {
       forwardFunds();
    }
 
-   /// @notice Sends the payment from the buyer to the crowdsale saller
+   /// @notice Sends the payment from the buyer to the crowdsale seller
    function forwardFunds() internal {
       wallet.transfer(msg.value);
    }

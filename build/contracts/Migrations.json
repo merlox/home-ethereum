@@ -64,10 +64,10 @@
     "1337": {
       "events": {},
       "links": {},
-      "address": "0xa8899b97d90d9a979a4c212ef5c12aa19ffacadc",
-      "updated_at": 1504346352008
+      "address": "0x2347f2b22a0ce332840b1ec446bbb03d2048266e",
+      "updated_at": 1504384636642
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1504346352008
+  "updated_at": 1504384636642
 }

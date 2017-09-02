@@ -4,7 +4,7 @@
   "description": "This is the home renting service Dapp",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "truffle test",
     "start": "nodemon server.js"
   },
   "keywords": [
