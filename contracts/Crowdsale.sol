@@ -69,7 +69,7 @@ contract Crowdsale is MintableToken {
 
    /// @notice Fallback function to buy tokens
    function () payable {
-      this.buyTokens.value(msg.value)(msg.sender);
+      buyTokens(msg.sender);
    }
 
    /// @notice To buy tokens given an address
